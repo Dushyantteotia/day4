@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title><style >
+		#output{
+			color: red;
+			float: right;
+		}
+		body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+	</style>
+</head>
+<body>
+	<form onclick="alert('form')">FORM
+  <div onclick="alert('div')">DIV
+    <p onclick="alert('p')">P</p>
+  </div>
+</form>
+<p id="output"> Output :-  if we click on , then we’ll see 3 alerts: p → div → form</p>
+
+</body>
+</html>

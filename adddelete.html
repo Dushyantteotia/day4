@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TABLE Add & Delete</title>
+	<style>
+		input{
+			display: block;
+			background: #eee;
+		}
+		body{
+			border: 3px dotted red;
+			margin: 3em;
+			padding: 3em;
+			padding-left: 50px;
+			background: lightblue;
+		}
+		#tabid{
+			float:right;
+					}
+
+	</style>
+	
+</head>
+<h1>Add & Delete Data </h1>
+<body>
+	<form id ="adform" method="post">
+		Name:<input type="text" id="name"  required placeholder="Enter ur Name"><br>
+		HomeTown:<input type="text" id="hometown"  required placeholder="Enter your HomeTown"><br>
+		<input type="button" onclick = "appendRow()" value="ADD">
+		<table id="tabid" border="2">
+		<tr>
+				<th>Name</th>
+				<th>Hometown</th></tr>
+			<tr><td>Dushyant</td>
+			<td>Rohtak</td></tr>
+	</table>
+	</form><br><br>
+	
+
+	<script>
+		var delt=1;
+	    function appendRow(){
+			var roow = document.createElement("tr");
+			for(var i=0;i<2;i++)
+			{
+				var tda = document.createElement("td");
+				var data = document.createTextNode(document.getElementById("adform").elements[i].value);
+				tda.appendChild(data);
+				roow.appendChild(tda);
+			
+			}
+			var tda = document.createElement("td");
+			var t = document.createElement("input");
+			t.setAttribute('type','button');
+			t.setAttribute('value','delete');
+			t.setAttribute('onclick','del()');
+			tda.appendChild(t);
+			roow.appendChild(tda);
+			document.getElementById("tabid").appendChild(roow);
+			delt+=1;
+		}
+		function del(){
+			var list = document.getElementById("tabid");
+			if(list.hasChildNodes()){
+				list.removeChild(list.childNodes[delt]);
+			}
+			delt-=1;
+		}
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>json</title>
+	<script >
+		//with Array
+		var students=['lokesh','rahul','ram'];
+		var jsonArray = JSON.stringify(students);
+		console.log(jsonArray) ;
+		alert(jsonArray);
+		// with object
+		var studentOb = {name:'pooja' , hometown:'davangare'};
+		var jsonObject= JSON.stringify(studentOb)
+		console.log(jsonObject);
+		alert(jsonObject);
+
+		var lokeshJson='{"name":"lokesh" , "hometown":"chitoor"}'
+		var lokeshOb= JSON.parse(lokeshJson);
+		alert(lokeshOb.name);
+
+	</script>
+</head>
+<body>
+
+</body>
+</html>

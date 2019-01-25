@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Form validation
+        </title>
+        <style>
+            input{
+                display: block;
+            }
+            form{
+                border: 2px  dotted blue;
+                padding: 2em;
+                margin: 4em;
+                background: lightblue;
+            }
+            #error{
+                font-weight: bold, italic;
+            }
+            div{
+                float:right;
+                width: 50%;
+            }
+            h3{
+                color: red;
+            }
+            .clearfix{
+                overflow: auto;
+            }
+            body{
+                background: blue;
+            }
+
+        </style>
+    </head>
+    <body >
+        <form name="userform" class="clearfix" onsubmit="return Validate()" action="haha.php" method="post">
+            <div>
+                <p><h2>Name: </h2><h3 id="error"></h3></p>
+                <p><h2>Gender: </h2><h3 id="error2"></h3></p>
+                <p><h2>Hobbies: </h2><h3 id="error3"></h3><h3 id="error31"></h3><h3 id="error32"></h3></p>
+                <p><h2>Textarea: </h2><h3 id="error4"></h3></p>
+                <p><h2>City: </h2><h3 id="error5">Ooty city</h3></p>
+            </div>
+            Name<input type="text" name="name" placeholder="Enter name">
+            Gender <input onchange="gen()" type="radio" value="m" name="gender">
+            <input onchange="gen1()" type="radio" value="f" name="gender">
+            Hobbies:
+            Travelling <input onclick="hob()" type="checkbox" value="t" name="hobbies">
+            Reading <input onchange="hob1()" type="checkbox" value="r" name="hobbies">
+            Sleeping <input onchange="hob2()" type="checkbox" value="s" name="hobbies">
+
+            <textarea id="tex" onchange="saysomething()" name="description">abcdefg</textarea>
+            <select onchange="giveinfo()" name="citiestravelled">
+                <option value="ooty city">OOTY</option>
+                <option value="kodai city">KODAI</option>
+            </select>
+            <input type="submit" value="submit">
+        </form>
+        <script>
+            var errormsg = "";
+            var formob = document.forms.userform;
+            var errordiv = document.getElementById("error");
+            document.forms.userform.name.addEventListener("input",dynamic);
+            //formob.description.addEventListner("textarea",saysomething);
+            function saysomething(){
+                if(tex.value.length<20 || tex.value==""){
+                    document.getElementById("error4").innerHTML=" the textarea for description got to be min 21 chars<br>";
+                }
+                else{
+                document.getElementById("error4").innerHTML=tex.value;
+                }
+            }
+            function dynamic(){
+                //console.log(document.forms.userform.textarea);
+                if(this.value.length<10 || this.value==""){
+                    document.getElementById("error").innerHTML="the name got to be 10 chars<br>";
+                }
+                else{
+                document.getElementById("error").innerHTML=this.value;
+                }
+            }
+            function gen(){
+                if(this.value="m"){
+                    document.getElementById("error2").innerHTML="Male";
+                }
+            }
+            function gen1(){
+                if(this.value="f"){
+                    document.getElementById("error2").innerHTML="Female";
+                }
+            }
+            function hob(){
+                if(this.value="t"){
+                document.getElementById("error3").innerHTML="Travelling";
+                }
+                
+                
+            }
+            function hobb(){
+                document.getElementById("error3").innerHTML="";
+                
+            }
+            function hob1(){
+                if(this.value="r"){
+                document.getElementById("error31").innerHTML="Reading";
+                }
+            }
+            function hob2(){
+
+                if(this.value="s"){
+                document.getElementById("error32").innerHTML="Sleeping";
+                }
+            }
+            
+            function giveinfo(){
+                if(formob.citiestravelled.value=="ooty city"){
+                    document.getElementById("error5").innerHTML="Ooty city";
+                }
+                else if(formob.citiestravelled.value=="kodai city"){
+                    document.getElementById("error5").innerHTML="Kodai city";
+                }
+            }
+            function Validate(){
+                var formisvalid = true;
+                var hobbiesarray = formob.hobbies;
+                var gender = formob.gender;
+                var citiestravelled = formob.citiestravelled;
+                if(formob.description.value.length<20){
+                    errormsg+=" the textarea for description got to be min 21 chars<br>";
+                    formisvalid = false;
+                }
+                if(formob.name.value.length<10 || formob.name.value==""){
+                    errormsg+=" the name got to be 10 chars<br>";
+                    formisvalid = false;
+                }
+                for(var i=0; i<hobbiesarray.length; i++){
+                    console.log(hobbiesarray[i].checked);
+                    console.log(hobbiesarray[i].name);
+                    console.log(hobbiesarray[i].value);
+                }
+                for(var i=0; i<gender.length; i++){
+                    console.dir(gender[i].checked);
+                    console.log(gender[i].name);
+                }
+                console.dir(citiestravelled.value);
+                errordiv.innerHTML = errormsg;
+                return formisvalid;
+            }
+        </script>
+
+    </body>
+</html>

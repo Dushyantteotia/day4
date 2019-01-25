@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>this</title>
+	<script >
+		function init() {
+		var ref=document.querySelector("#click-div");
+		ref.addEventListener('click',showDetails);
+		}
+		function showDetails(){
+			console.log(this);
+			console.dir(this);
+			console.log(this.className);
+			console.log(this.id);
+
+
+		}
+	</script>
+</head>
+<body onload="init()">
+	<div id="click-div" class="who is sleepy!!!!"> click me</div>
+
+</body>
+</html>
